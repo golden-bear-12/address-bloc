@@ -10,10 +10,11 @@ class MenuController
   def main_menu
     puts "Main Menu - #{address_book.entries.count} entries"
     puts "1 - View all entries"
-    puts "2 - Create an entry"
-    puts "3 - Search for an entry"
-    puts "4 - Import enties from a CSV"
-    puts "5 - Exit"
+    puts "2 - View Entry Number n"
+    puts "3 - Create an entry"
+    puts "4 - Search for an entry"
+    puts "5 - Import enties from a CSV"
+    puts "6 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -24,17 +25,21 @@ class MenuController
       main_menu
     when 2
       system "clear"
-      create_entry
+      view_entry_n
       main_menu
     when 3
       system "clear"
-      search_entries
+      create_entry
       main_menu
     when 4
       system "clear"
-      read_csv
+      search_entries
       main_menu
     when 5
+      system "clear"
+      read_csv
+      main_menu
+    when 6
       puts "Good-bye!"
       exit (0)
 
@@ -77,6 +82,26 @@ class MenuController
       entry_submenu(entry)
     end
   end
+
+  def view_entry_n
+    if address_book.entries.size() == 0
+      system "clear"
+      puts "No Entries in Address Book"
+    else
+      ab_indexes = address_book.entries.each_index
+      puts "Enter Entry Number: "
+      n = gets.to_i
+      if ab_indexes.include?(n-1)
+        system "clear"
+        puts address_book.entries.fetch(n-1)
+      else
+        puts "#{n} is not a valid input"
+        view_entry_n
+      end
+    end
+  end
+
+
 
   def create_entry
     system "clear"
