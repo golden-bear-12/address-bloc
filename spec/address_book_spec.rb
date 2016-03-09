@@ -73,6 +73,32 @@ let(:book) { AddressBook.new }
       entry_five = book.entries[4]
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
     end
-
   end
+
+  describe "#import_from_csv" do
+    it "imports the correct number of entries" do
+      book.import_from_csv("entries_2.csv")
+      book_size = book.entries.size
+
+      expect(book_size).to eq 3
+    end
+
+    it "improts the 1st entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[0]
+      check_entry(entry_one, "T-Boyz", "008-523-1995", "Don'tGo@email.com")
+    end
+    it "imports the 2nd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_two = book.entries[1]
+      check_entry(entry_two, "Left-Eye", "418-523-1995", "Chasing@email.com")
+    end
+    it "imports the 3rd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_three = book.entries[2]
+      check_entry(entry_three, "Chili", "003-523-1995", "Waterfalls@email.com")
+    end
+  end
+
+
 end
