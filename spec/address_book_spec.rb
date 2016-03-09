@@ -48,7 +48,7 @@ let(:book) { AddressBook.new }
       expect(book_size).to eq 5
     end
 
-    it "improts the 1st entry" do
+    it "imports the 1st entry" do
       book.import_from_csv("entries.csv")
       entry_one = book.entries[0]
       check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
@@ -83,10 +83,11 @@ let(:book) { AddressBook.new }
       expect(book_size).to eq 3
     end
 
-    it "improts the 1st entry" do
+    it "imports the 1st entry" do
       book.import_from_csv("entries_2.csv")
       entry_one = book.entries[0]
-      check_entry(entry_one, "T-Boyz", "008-523-1995", "Don'tGo@email.com")
+      check_entry(entry_one, "Chili", "003-523-1995", "Waterfalls@email.com")
+
     end
     it "imports the 2nd entry" do
       book.import_from_csv("entries_2.csv")
@@ -96,7 +97,7 @@ let(:book) { AddressBook.new }
     it "imports the 3rd entry" do
       book.import_from_csv("entries_2.csv")
       entry_three = book.entries[2]
-      check_entry(entry_three, "Chili", "003-523-1995", "Waterfalls@email.com")
+      check_entry(entry_three, "T-Boyz", "008-523-1995", "Don'tGo@email.com")
     end
   end
 
