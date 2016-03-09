@@ -88,10 +88,9 @@ class MenuController
       system "clear"
       puts "No Entries in Address Book"
     else
-      ab_indexes = address_book.entries.each_index
       puts "Enter Entry Number: "
       n = gets.to_i
-      if ab_indexes.include?(n-1)
+      if address_book.entries.size <= n
         system "clear"
         puts address_book.entries.fetch(n-1)
       else
