@@ -13,8 +13,9 @@ class MenuController
     puts "1 - View all entries"
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
-    puts "4 - Import enties from a CSV"
-    puts "5 - Exit"
+    puts "4 - Import entries from a CSV"
+    puts "5 - Delete all entries"
+    puts "6 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -36,6 +37,10 @@ class MenuController
       read_csv
       main_menu
     when 5
+      system "clear"
+      nuke
+      main_menu
+    when 6
       puts "Good-bye!"
       exit (0)
     else
@@ -43,6 +48,11 @@ class MenuController
       puts "Sorry, that is not a valid input"
       main_menu
     end
+  end
+
+
+  def nuke
+    address_book.entries.clear
   end
 
 
@@ -120,7 +130,7 @@ class MenuController
     begin
       entry_count = address_book.import_from_csv(file_name).count
       system "clear"
-      puts "#{entry_count} new entries addred from #{file_name}"
+      puts "#{entry_count} new entries added from #{file_name}"
     rescue
       puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
       read_csv
